@@ -5,12 +5,14 @@
  * TODO: add play link with steam://run/<appId>
  * TODO: error handling
  * TODO: save last steam id used in cookie
+ * TODO: Display total count of games
+ * TODO: When coming in with saved steam id do not pick game automatically
  * TODO: spinning animation when picking random game
- * TODO: ability to add non-steam games to your list
  */
 $(document).ready(function() {
 	$('#user-form').on('submit', function(e) {
 		e.preventDefault();
+		HomeUi.getSteamProfile($('#user-steam-id').val());
 		HomeUi.getRandomGameForSteamId($('#user-steam-id').val());
 	});
 	$('#new-random-game').on('click', function(e) {
@@ -20,15 +22,29 @@ $(document).ready(function() {
 });
 
 var HomeUi = {
+	getSteamProfile: function(steam_id) {
+		console.log('getSteamProfile ' + steam_id);
+		$.ajax('app/ajax.php', {
+			data: { 'action': 'get_steam_profile', 'steam_id': steam_id },
+			success: HomeUi.updateUiWithSteamProfile,
+			error: HomeUi.logAjaxError
+		});
+	},
+	updateUiWithSteamProfile: function(profile) {
+		console.log('updateUiWithSteamProfile');
+		console.log(profile);
+		$('#steam-name').html(profile.nickname);
+	},
 	getRandomGameForSteamId: function(steam_id) {
 		console.log('getRandomGameForSteamId ' + steam_id);
 		$.ajax('app/ajax.php', {
-			data: { 'steam_id': steam_id },
+			data: { 'action': 'choose_random_game', 'steam_id': steam_id },
 			success: HomeUi.updateUiWithRandomGame,
 			error: HomeUi.logAjaxError
 		});
 	},
 	updateUiWithRandomGame: function(game) {
+		console.log('updateUiWithRandomGame');
 		console.log(game);
 		$('#user-form').hide();
 		$('#steam-name').show();

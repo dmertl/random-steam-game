@@ -6,7 +6,7 @@
 class RandomGameChooser {
 
 	/**
-	 * @param $steam_id
+	 * @param string $steam_id
 	 * @return SteamGame
 	 * @throws Exception
 	 */
@@ -21,7 +21,13 @@ class RandomGameChooser {
 		}
 	}
 
-	protected static function _getSteamId($steam_id) {
+	/**
+	 * Get SteamId
+	 *
+	 * @param string $steam_id
+	 * @return SteamId
+	 */
+	public static function getSteamId($steam_id) {
 		if($id = apc_fetch('SteamId:'.$steam_id)) {
 			return $id;
 		}
@@ -30,11 +36,17 @@ class RandomGameChooser {
 		return $id;
 	}
 
+	/**
+	 * Get steam games for SteamId
+	 *
+	 * @param string $steam_id
+	 * @return array
+	 */
 	protected static function _getSteamIdGames($steam_id) {
 		if($games = apc_fetch('SteamId::games:'.$steam_id)) {
 			return $games;
 		}
-		$id = self::_getSteamId($steam_id);
+		$id = self::getSteamId($steam_id);
 		$games = $id->getGames();
 		apc_store('SteamId::games:'.$steam_id, $games);
 		return $games;

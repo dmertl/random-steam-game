@@ -9,7 +9,7 @@
 <div id="main">
 	<div id="main-header">
 		<h2>Random Game</h2>
-		<h1 id="steam-name">Steam Name Goes Here</h1>
+		<h1 id="steam-name"></h1>
 		<form action="" method="post" id="user-form">
 			<input type="text" name="steam_id" id="user-steam-id" placeholder="Steam ID"/>
 			<input type="submit" name="submit" value="Submit"/>
