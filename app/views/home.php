@@ -1,6 +1,3 @@
-<?php
-$test_game = '{"appId":11280,"id":"penguinsarena","logoThumbnailUrl":"http:\/\/media.steampowered.com\/steamcommunity\/public\/images\/apps\/11280\/7da031d76b55984403a020a0db3225d4b6659395_thumb.jpg","logoUrl":"http:\/\/media.steampowered.com\/steamcommunity\/public\/images\/apps\/11280\/7da031d76b55984403a020a0db3225d4b6659395.jpg","name":"Penguins Arena: Sedna\'s World","shortName":"penguinsarena"}';
-?>
 <html>
 <head>
 	<title>Random Steam Game</title>
@@ -20,6 +17,7 @@ $test_game = '{"appId":11280,"id":"penguinsarena","logoThumbnailUrl":"http:\/\/m
 	</div>
 	<div id="main-content">
 		<div class="games-list"></div>
+		<a href="#" class="button" id="new-random-game">New Random Game</a>
 	</div>
 </div>
 </body>

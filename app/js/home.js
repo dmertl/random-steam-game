@@ -1,11 +1,19 @@
 /**
- * TODO: ability to select new random game
  * TODO: pass back steam user info for header
  * TODO: ability to switch steam ids
  * TODO: ability to refresh game cache
+ * TODO: add play link with steam://run/<appId>
+ * TODO: error handling
+ * TODO: save last steam id used in cookie
+ * TODO: spinning animation when picking random game
+ * TODO: ability to add non-steam games to your list
  */
 $(document).ready(function() {
 	$('#user-form').on('submit', function(e) {
+		e.preventDefault();
+		HomeUi.getRandomGameForSteamId($('#user-steam-id').val());
+	});
+	$('#new-random-game').on('click', function(e) {
 		e.preventDefault();
 		HomeUi.getRandomGameForSteamId($('#user-steam-id').val());
 	});
